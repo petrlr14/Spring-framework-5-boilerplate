@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>  
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +15,12 @@
 			<th>Age</th>
 			<th>Status</th>
 		</tr>
-		<c:forEach items="${students}" var="students">
-				<tr>
-					<td>${students.sName}</td>
-					<td>${students.lName}</td>
-					<td>${students.sAge}</td>
-					<td>${students.activoDelegate}</td>
-				</tr>	
-			</c:forEach>
+		<tr>
+			<td>${student.sName}</td>
+			<td>${student.lName}</td>
+			<td>${student.sAge}</td>
+			<td>${student.activoDelegate}</td>
+		</tr>
 	</table>
 </body>
 </html>
