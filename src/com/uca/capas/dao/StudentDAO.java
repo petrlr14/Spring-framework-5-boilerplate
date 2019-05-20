@@ -9,6 +9,6 @@ public interface StudentDAO {
 		
 	public List<Student> findAll() throws DataAccessException;
 	public Student findOne(Integer code) throws DataAccessException;
-
+	public void save(Student student, Integer newRow) throws DataAccessException;
 
 }

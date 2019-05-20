@@ -24,5 +24,8 @@
 				</tr>	
 			</c:forEach>
 	</table>
+	<form action="${pageContext.request.contextPath}/save" method="post">
+		<input type="submit" value="add">
+	</form>
 </body>
 </html>
