@@ -12,5 +12,7 @@ public interface StudentService {
 	public Student findOne(Integer code);
 	
 	public void save(Student student);
+
+	public void delete(Student student);
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,11 +32,16 @@ public class MainController {
 		return view; 
 	}
 	
-	@RequestMapping("/findOne")
-	public ModelAndView findOne() {
-		ModelAndView view=new ModelAndView();
-		view.setViewName("findOne");
-		return view;
+	
+	@RequestMapping("/save")
+	public ModelAndView save(@ModelAttribute Student student) {
+		System.out.println(student.getbActivo());
+		try {
+			studentService.save(student);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return this.init(); 
 	}
 	
 	@RequestMapping(path="/find", method = RequestMethod.POST)
@@ -47,8 +53,29 @@ public class MainController {
 		return view;
 	}
 	
-	@RequestMapping(path="/addOne", method = RequestMethod.POST)
-	public ModelAndView save() {
-		
+	@RequestMapping(path="/edit", method = RequestMethod.POST)
+	public ModelAndView edit(@RequestParam Integer code) {
+		ModelAndView view=new ModelAndView();
+		Student s;
+		try {
+			s=studentService.findOne(code);
+		}catch(Exception e){
+			s=new Student();
+		}
+		view.addObject("student", s);
+		view.setViewName("create");
+		return view;
 	}
+	
+	@RequestMapping(path="/delete", method=RequestMethod.POST)
+	public ModelAndView delete(@RequestParam Integer code) {
+		try {
+			studentService.delete(studentService.findOne(code));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return this.init();
+	}
+	
+	
 }

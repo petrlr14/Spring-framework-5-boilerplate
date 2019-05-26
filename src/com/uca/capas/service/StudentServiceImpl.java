@@ -29,7 +29,13 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public void save(Student student) {
 		int newRow=student.getcStudent()==null?0:1;
+		System.out.println(newRow);
 		studentDAO.save(student, newRow);
+	}
+
+	@Override
+	public void delete(Student student) {
+		studentDAO.delete(student);
 	}
 
 }

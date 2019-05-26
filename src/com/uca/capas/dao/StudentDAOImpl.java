@@ -37,12 +37,20 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public void save(Student student, Integer newRow) throws DataAccessException {
 		try {
-			if(newRow==1) entityManager.persist(student);
+			if(newRow==0) entityManager.persist(student);
 			else student=entityManager.merge(student);
 			entityManager.flush();
 		}catch (Exception e) {
 			throw e;
 		}
 	}
+
+	@Transactional
+	@Override
+	public void delete(Student student) throws DataAccessException {
+		entityManager.remove(entityManager.contains(student)?student:entityManager.merge(student));
+	}
+	
+	
 	
 }
